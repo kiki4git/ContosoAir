@@ -7,9 +7,16 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+ name: 'Demo'
+ demands:
+ - Agent.OS -equals Linux
 
 steps:
+- task: Bash@3
+  displayName: 'Execute inline bash'
+  inputs:
+   targetType: inline
+   script: echo "hostname = $(hostname)"
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
